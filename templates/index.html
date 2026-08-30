@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do-list</title>
+</head>
+<body>
+    <h1>Bem vindo ao To-do-list</h1>
+    <h2>Faça seu login !</h2>
+    <div>
+        <form method="POST">
+            <div>
+                <label for="nome">Usuário:</label>
+                <input type="text" name="username"/>
+            </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="password" name="password"/>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <p>Caso não tenha conta, <a href="{{ url_for('register') }}">cadastre-se aqui</a></p>
+</body>
+</html>
