@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from extensions import db, login_manager
+from flask_login import login_required
 import auth
 
 application = Flask(__name__)
@@ -17,6 +18,7 @@ def register():
     return render_template("register.html")
 
 @application.route("/dashboard", methods=["POST","GET"])
+@login_required
 def dashboard():
     return render_template("dashboard.html")
 
