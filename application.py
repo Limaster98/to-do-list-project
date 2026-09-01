@@ -1,11 +1,12 @@
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from extensions import db
+from extensions import db, login_manager
+import auth
 
 application = Flask(__name__)
 application.config['SECRET_KEY'] = "MINHA_CHAVE_140198"
 application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
 db.init_app(application)
+login_manager.init_app(application)
 
 @application.route("/", methods=["POST","GET"])
 def home():
