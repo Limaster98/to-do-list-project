@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-do-list</title>
+</head>
+<body>
+  <h1>Insira sua tarefa !</h1>
+  <form method="POST">
+        <label for="nome">Descrição da tarefa:</label>
+        <input type="text" name="description"/><br>
+
+        <input type="radio" name="status" id="todo" value="todo"/>
+        <label for="todo">A fazer</label><br>
+
+        <input type="radio" name="status" id="progress" value="progress"/>
+        <label for="progress">Em progresso</label><br>
+
+        <input type="radio" name="status" id="complete" value="complete"/>
+        <label for="complete">Concluída</label><br>
+      <button style="margin: 5px;" type="submit">Cadastrar</button>
+  </form>
+</body>
+</html>

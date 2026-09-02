@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from extensions import db, login_manager
-from flask_login import login_required, login_user
-from models import User
+from flask_login import login_required, login_user, current_user
+from models import User, Tasks
 import auth
 
 application = Flask(__name__)
@@ -44,6 +44,21 @@ def register():
 @login_required
 def dashboard():
     return render_template("dashboard.html")
+
+@application.route("/dashboard/task_add", methods=["POST","GET"])
+@login_required
+def add_task():
+    if request.method == 'POST':
+        status_task = request.form['status']
+        description_task = request.form['description']
+
+        if status_task and description_task:
+            task = Tasks(user_id=current_user.id, status=status_task, description=description_task)
+            db.session.add(task)
+            db.session.commit()
+            return redirect(url_for('dashboard'))
+
+    return render_template("task/add_task.html")
 
 with application.app_context():
     db.create_all()
