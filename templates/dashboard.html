@@ -13,11 +13,15 @@
                 A fazer
             </th>
         </tr>
-        <tr style="background-color: #333333; color: white;">
-            <th style="border: 2px solid #dddddd; padding: 10px;">
-                tarefa1
-            </th>
-        </tr>
+        {% if todo_tasks %}
+            {% for task in todo_tasks %}
+            <tr style="background-color: #333333; color: white;">
+                <th style="border: 2px solid #dddddd; padding: 10px;">
+                    -{{ task }}
+                </th>
+            </tr>
+            {% endfor %}
+        {% endif %}
     </table>
     <table style="border-collapse: collapse; width: 50%; margin-bottom: 50px;">
         <tr style="background-color: #00778b; color: white;">
@@ -25,11 +29,15 @@
                 Em progresso
             </th>
         </tr>
-        <tr style="background-color: #333333; color: white;">
-            <th style="border: 2px solid #dddddd; padding: 10px;">
-                tarefa2
-            </th>
-        </tr>
+        {% if progress_tasks %}
+            {% for task in progress_tasks %}
+            <tr style="background-color: #333333; color: white;">
+                <th style="border: 2px solid #dddddd; padding: 10px;">
+                    -{{ task }}
+                </th>
+            </tr>
+            {% endfor %}
+        {% endif %}
     </table>
     <table style="border-collapse: collapse; width: 50%; margin-bottom: 50px;">
         <tr style="background-color: #00778b; color: white;">
@@ -37,11 +45,15 @@
                 Concluida
             </th>
         </tr>
-        <tr style="background-color: #333333; color: white;">
-            <th style="border: 2px solid #dddddd; padding: 10px;">
-                tarefa2
-            </th>
-        </tr>
+        {% if complete_tasks %}
+            {% for task in complete_tasks %}
+            <tr style="background-color: #333333; color: white;">
+                <th style="border: 2px solid #dddddd; padding: 10px;">
+                    -{{ task }}
+                </th>
+            </tr>
+            {% endfor %}
+        {% endif %}
     </table>
     <h3><a href="{{ url_for('add_task') }}">Adicione aqui sua tarefa</a></h3>
 </body>

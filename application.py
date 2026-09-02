@@ -43,7 +43,20 @@ def register():
 @application.route("/dashboard", methods=["POST","GET"])
 @login_required
 def dashboard():
-    return render_template("dashboard.html")
+    todo_tasks, progress_tasks, complete_tasks= [], [], []
+    all_tasks = current_user.tasks
+
+    if all_tasks:
+        for task in all_tasks:
+            match task.status:
+                case "todo":
+                    todo_tasks.append(task.description)
+                case "progress":
+                    progress_tasks.append(task.description)
+                case "complete":
+                    complete_tasks.append(task.description)
+
+    return render_template("dashboard.html", todo_tasks=todo_tasks, progress_tasks=progress_tasks, complete_tasks=complete_tasks)
 
 @application.route("/dashboard/task_add", methods=["POST","GET"])
 @login_required
