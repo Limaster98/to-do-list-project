@@ -73,6 +73,15 @@ def add_task():
 
     return render_template("task/add_task.html")
 
+@application.route("/dashboard/task_delete/<int:task_id>", methods=["POST","GET"])
+@login_required
+def delete_task(task_id):
+    task = db.session.query(Tasks).filter_by(id=task_id).first()
+    if task:
+        db.session.delete(task)
+        db.session.commit()
+    return redirect(url_for('dashboard'))
+
 with application.app_context():
     db.create_all()
 

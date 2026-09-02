@@ -17,7 +17,7 @@
             {% for task in todo_tasks %}
             <tr style="background-color: #333333; color: white;">
                 <th style="border: 2px solid #dddddd; padding: 10px;">
-                    - {{ task.description }}
+                    - {{ task.description }} <div style="float: right;"><a href="{{ url_for('delete_task',task_id=task.id)}}">X</a></div>
                 </th>
             </tr>
             {% endfor %}
@@ -33,7 +33,7 @@
             {% for task in progress_tasks %}
             <tr style="background-color: #333333; color: white;">
                 <th style="border: 2px solid #dddddd; padding: 10px;">
-                    - {{ task.description }}
+                    - {{ task.description }} <div style="float: right;"><a href="{{ url_for('delete_task',task_id=task.id)}}">X</a></div>
                 </th>
             </tr>
             {% endfor %}
@@ -49,7 +49,7 @@
             {% for task in complete_tasks %}
             <tr style="background-color: #333333; color: white;">
                 <th style="border: 2px solid #dddddd; padding: 10px;">
-                    - {{ task.description }}
+                    - {{ task.description }} <div style="float: right;"><a href="{{ url_for('delete_task',task_id=task.id)}}">X</a></div>
                 </th>
             </tr>
             {% endfor %}
