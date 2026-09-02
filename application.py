@@ -50,11 +50,11 @@ def dashboard():
         for task in all_tasks:
             match task.status:
                 case "todo":
-                    todo_tasks.append(task.description)
+                    todo_tasks.append(task)
                 case "progress":
-                    progress_tasks.append(task.description)
+                    progress_tasks.append(task)
                 case "complete":
-                    complete_tasks.append(task.description)
+                    complete_tasks.append(task)
 
     return render_template("dashboard.html", todo_tasks=todo_tasks, progress_tasks=progress_tasks, complete_tasks=complete_tasks)
 
