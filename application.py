@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from extensions import db, login_manager
-from flask_login import login_required, login_user, current_user
+from flask_login import login_required, login_user, current_user, logout_user
 from models import User, Tasks
 import auth
 
@@ -57,6 +57,12 @@ def dashboard():
                     complete_tasks.append(task)
 
     return render_template("dashboard.html", todo_tasks=todo_tasks, progress_tasks=progress_tasks, complete_tasks=complete_tasks)
+
+@application.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 @application.route("/dashboard/task_add", methods=["POST","GET"])
 @login_required
