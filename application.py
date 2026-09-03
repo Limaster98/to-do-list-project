@@ -56,7 +56,7 @@ def dashboard():
                 case "complete":
                     complete_tasks.append(task)
 
-    return render_template("dashboard.html", todo_tasks=todo_tasks, progress_tasks=progress_tasks, complete_tasks=complete_tasks)
+    return render_template("dashboard.html", todo_tasks=todo_tasks, progress_tasks=progress_tasks, complete_tasks=complete_tasks, username=current_user.username)
 
 @application.route('/logout')
 @login_required
