@@ -7,20 +7,9 @@
 </head>
 <body>
     <h1>Bem vindo ao To-do-list</h1>
-    <h2>Faça seu login !</h2>
     <div>
-        <form method="POST">
-            <div>
-                <label for="nome">Usuário:</label>
-                <input type="text" name="username"/>
-            </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" name="password"/>
-            </div>
-            <button type="submit">Login</button>
-        </form>
+        <a style="background-color: darkgray; padding: 15px 30px; border-radius: 5px; text-decoration: none;" href="{{ url_for('login') }}">Fazer login</a>
+        <a style="background-color: darkgray; padding: 15px 30px; border-radius: 5px; text-decoration: none" href="{{ url_for('register') }}">Cadastro</a>
     </div>
-    <p>Caso não tenha conta, <a href="{{ url_for('register') }}">cadastre-se aqui</a></p>
 </body>
 </html>

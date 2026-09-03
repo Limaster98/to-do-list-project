@@ -12,6 +12,10 @@ login_manager.init_app(application)
 
 @application.route("/", methods=["POST","GET"])
 def home():
+    return render_template("index.html")
+
+@application.route("/login", methods=["POST","GET"])
+def login():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
     if request.method == 'POST':
@@ -25,7 +29,7 @@ def home():
             
             return redirect(url_for('dashboard'))
         
-    return render_template("index.html")
+    return render_template("login.html")
 
 @application.route("/register", methods=["POST","GET"])
 def register():
@@ -79,7 +83,7 @@ def add_task():
             db.session.commit()
             return redirect(url_for('dashboard'))
 
-    return render_template("task/add_task.html")
+    return render_template("add_task.html")
 
 @application.route("/dashboard/task_delete/<int:task_id>", methods=["POST","GET"])
 @login_required
