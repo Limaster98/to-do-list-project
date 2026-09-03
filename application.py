@@ -12,6 +12,8 @@ login_manager.init_app(application)
 
 @application.route("/", methods=["POST","GET"])
 def home():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
