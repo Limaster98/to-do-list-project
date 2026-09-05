@@ -5,4 +5,4 @@ from models import User
 def load_user(user_id):
     return db.session.get(User,user_id)
 
-login_manager.login_view="home"
+login_manager.login_view="home.home"
