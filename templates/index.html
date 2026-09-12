@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-do-list</title>
-</head>
-<body>
-    <h1>Bem vindo ao To-do-list</h1>
-    <div>
-        <a style="background-color: darkgray; padding: 15px 30px; border-radius: 5px; text-decoration: none;" href="{{ url_for('user.login') }}">Fazer login</a>
-        <a style="background-color: darkgray; padding: 15px 30px; border-radius: 5px; text-decoration: none" href="{{ url_for('user.register') }}">Cadastro</a>
+{% extends 'base.html' %}
+
+{% block title %}
+<title>To-do-list</title>
+{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h1 class="mb-4">Bem vindo ao To-do-list</h1>
+        <a class="btn btn-outline-primary btn-lg m-2" href="{{ url_for('user.login') }}" role="button">Fazer login</a>
+        <a class="btn btn-outline-primary btn-lg m-2" href="{{ url_for('user.register') }}">Cadastro</a>
     </div>
-</body>
-</html>
+{% endblock %}

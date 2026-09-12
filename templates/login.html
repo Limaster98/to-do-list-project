@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-do-list</title>
-</head>
-<body>
-    <h1>Bem vindo ao To-do-list</h1>
-    <h2>Faça seu login !</h2>
-    <div>
-        <form method="POST">
-            <div>
-                <label for="nome">Usuário:</label>
-                <input type="text" name="username"/>
+{% extends 'base.html' %}
+
+{% block title %}
+<title>To-do-list Login</title>
+{% endblock %}
+
+{% block content %}
+    <div class="m-3">
+        <h1 class="text-center m-2">Bem-vindo!</h1>
+        <p class="text-center fs-4">Entre com suas credencias</p>
+        <form class="w-50 mx-auto" method="POST">
+            <div class="m-2">
+                <label for="nome" class="form-label text-start fw-bold">Usuário:</label>
+                <input type="text" name="username" class="form-control"/>
             </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" name="password"/>
+            <div class="m-2">
+                <label for="senha" class="form-label fw-bold">Senha:</label>
+                <input type="password" name="password" class="form-control"/>
             </div>
-            <button type="submit">Login</button>
+            <div class="d-flex justify-content-center m-3">
+                <button type="submit" class="btn btn-primary btn-lg">Login</button>
+            </div>
         </form>
+        <p class="text-center mb-1 pt-2 fw-bold">Não tem cadastro? <a class="text-decoration-none" href="{{ url_for('user.register') }}">Cadastre-se aqui!</a></p>
     </div>
-    <p>Caso não tenha conta, <a href="{{ url_for('user.register') }}">cadastre-se aqui</a></p>
-</body>
-</html>
+{% endblock %}
