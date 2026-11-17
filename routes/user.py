@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, Blueprint
+from flask import render_template, request, redirect, url_for, Blueprint, flash
 from extensions import db
 from flask_login import login_user, current_user, logout_user, login_required
 from models import User
@@ -14,13 +14,20 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        if username and password:
-            user = User.query.filter_by(username=username).first()
-            if user and check_password_hash(user.password, password):
-                login_user(user)
-                return redirect(url_for('dashboard.home'))
-            else:
-                return render_template("login.html"), 401
+        if not username:
+            flash('Nome de usuário inválido!', 'danger')
+            return render_template('login.html')
+        elif not password:
+            flash('Senha inválida!', 'danger')
+            return render_template('login.html')
+
+        user = User.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for('dashboard.home'))
+        else:
+            flash('Senha ou usuário inválido!', 'danger')
+            return render_template("login.html")
         
     return render_template("login.html")
 
@@ -30,13 +37,24 @@ def register():
         username = request.form['username']
         password = request.form['password']
 
-        if username and password:
-            new_user = User(username=username, password=generate_password_hash(password))
-            db.session.add(new_user)
-            db.session.commit()
-            login_user(new_user)
+        if not username:
+            flash('Nome de usuário inválido!', 'danger')
+            return render_template('register.html')
+        elif not password:
+            flash('Senha inválida!', 'danger')
+            return render_template('register.html')
 
-            return redirect(url_for('dashboard.home'))
+        user = User.query.filter_by(username=username).first()
+
+        if user:
+            flash('Nome de usuário já existe!', 'danger')
+            return render_template('register.html')
+
+        new_user = User(username=username, password=generate_password_hash(password))
+        db.session.add(new_user)
+        db.session.commit()
+        login_user(new_user)
+        return redirect(url_for('dashboard.home'))
 
     return render_template("register.html")
 
