@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, Blueprint
 from extensions import db
 from flask_login import login_user, current_user, logout_user, login_required
 from models import User
+from werkzeug.security import generate_password_hash, check_password_hash
 
 user_route = Blueprint('user', __name__, template_folder='templates')
 
@@ -14,8 +15,8 @@ def login():
         password = request.form['password']
 
         if username and password:
-            user = User.query.filter_by(username=username, password=password).first()
-            if user:
+            user = User.query.filter_by(username=username).first()
+            if user and check_password_hash(user.password, password):
                 login_user(user)
                 return redirect(url_for('dashboard.home'))
             else:
@@ -30,7 +31,7 @@ def register():
         password = request.form['password']
 
         if username and password:
-            new_user = User(username=username, password=password)
+            new_user = User(username=username, password=generate_password_hash(password))
             db.session.add(new_user)
             db.session.commit()
             
