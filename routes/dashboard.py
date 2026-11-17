@@ -60,7 +60,6 @@ def edit_task(task_id):
 @dashboard_routes.route("/task_delete/<int:task_id>", methods=["POST","GET"])
 @login_required
 def delete_task(task_id):
-    task = db.session.query(Tasks).filter_by(id=task_id).first()
     task = db.session.query(Tasks).filter_by(id=task_id, user_id=current_user.id).first()
     if task:
         db.session.delete(task)
