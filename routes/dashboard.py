@@ -38,10 +38,30 @@ def add_task():
 
     return render_template("add_task.html")
 
+@dashboard_routes.route("/task_edit/<int:task_id>", methods=["POST","GET"])
+@login_required
+def edit_task(task_id):
+    task = db.session.query(Tasks).filter_by(id=task_id, user_id=current_user.id).first()
+    if not task:
+        return redirect(url_for('dashboard.home'))
+
+    if request.method == 'POST':
+        new_status_task = request.form.get('status')
+        new_description_task = request.form.get('description')
+
+        if new_status_task and new_description_task:
+            task.status = new_status_task
+            task.description = new_description_task
+            db.session.commit()
+            return redirect(url_for('dashboard.home'))
+
+    return render_template("edit_task.html", task=task)
+
 @dashboard_routes.route("/task_delete/<int:task_id>", methods=["POST","GET"])
 @login_required
 def delete_task(task_id):
     task = db.session.query(Tasks).filter_by(id=task_id).first()
+    task = db.session.query(Tasks).filter_by(id=task_id, user_id=current_user.id).first()
     if task:
         db.session.delete(task)
         db.session.commit()

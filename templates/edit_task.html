@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>To-do-list Editar tarefa</title>
+{% endblock %}
+
+{% block content %}
+  <div class="m-3">
+    <h1 class="text-center mb-4">Editar tarefa</h1>
+    <form style="width: 65%;" class="mx-auto" method="POST">
+        <label class="form-label fw-bold" for="description">Descrição da tarefa:</label>
+        <input class="form-control" type="text" id="description" name="description" value="{{ task.description }}" required/>
+
+        <div class="form-check mb-1 mt-3">
+            <input class="form-check-input" type="radio" name="status" id="todo" value="todo" {% if task.status == 'todo' %}checked{% endif %}/>
+            <label class="form-check-label" for="todo">A fazer</label>
+        </div>
+        
+        <div class="form-check my-1">
+            <input class="form-check-input" type="radio" name="status" id="progress" value="progress" {% if task.status == 'progress' %}checked{% endif %}/>
+            <label class="form-check-label" for="progress">Em progresso</label>
+        </div>
+
+        <div class="form-check my-1">
+            <input class="form-check-input" type="radio" name="status" id="complete" value="complete" {% if task.status == 'complete' %}checked{% endif %}/>
+            <label class="form-check-label" for="complete">Concluída</label>
+        </div>
+        <div class="d-flex justify-content-center gap-2 mt-4">
+            <button class="btn btn-primary" type="submit">Salvar alterações</button>
+            <a href="{{ url_for('dashboard.home') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+  </div>
+{% endblock %}
