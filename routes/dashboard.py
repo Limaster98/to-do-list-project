@@ -57,7 +57,7 @@ def edit_task(task_id):
 
     return render_template("edit_task.html", task=task)
 
-@dashboard_routes.route("/task_delete/<int:task_id>", methods=["POST","GET"])
+@dashboard_routes.route("/task_delete/<int:task_id>", methods=["POST"])
 @login_required
 def delete_task(task_id):
     task = db.session.query(Tasks).filter_by(id=task_id, user_id=current_user.id).first()

@@ -21,10 +21,18 @@
                 {% for task in todo_tasks %}
                 <tr>
                     <th class="ps-5">
-                        - {{ task.description }}<div class="float-end"><a class="text-decoration-none text-primary me-3"
-                                href="{{ url_for('dashboard.edit_task', task_id=task.id) }}">Editar</a><a
-                                style="color: red;" class="text-decoration-none"
-                                href="{{ url_for('dashboard.delete_task', task_id=task.id) }}">X</a></div>
+                        - {{ task.description }}
+                        <div class="float-end d-inline-flex align-items-center">
+                            <a class="text-decoration-none text-primary me-3"
+                                href="{{ url_for('dashboard.edit_task', task_id=task.id) }}">Editar</a>
+                            <form action="{{ url_for('dashboard.delete_task', task_id=task.id) }}" method="POST"
+                                class="d-inline">
+                                <button type="submit"
+                                    class="btn btn-link p-0 text-danger text-decoration-none fw-bold border-0"
+                                    onclick="return confirm('Excluir esta tarefa?')">
+                                    Excluir</button>
+                            </form>
+                        </div>
                     </th>
                 </tr>
                 {% endfor %}
@@ -53,10 +61,18 @@
                 {% for task in progress_tasks %}
                 <tr>
                     <th class="ps-5">
-                        - {{ task.description }}<div class="float-end"><a class="text-decoration-none text-primary me-3"
-                                href="{{ url_for('dashboard.edit_task', task_id=task.id) }}">Editar</a><a
-                                style="color: red;" class="text-decoration-none"
-                                href="{{ url_for('dashboard.delete_task', task_id=task.id) }}">X</a></div>
+                        - {{ task.description }}
+                        <div class="float-end d-inline-flex align-items-center">
+                            <a class="text-decoration-none text-primary me-3"
+                                href="{{ url_for('dashboard.edit_task', task_id=task.id) }}">Editar</a>
+                            <form action="{{ url_for('dashboard.delete_task', task_id=task.id) }}" method="POST"
+                                class="d-inline">
+                                <button type="submit"
+                                    class="btn btn-link p-0 text-danger text-decoration-none fw-bold border-0"
+                                    onclick="return confirm('Excluir esta tarefa?')">
+                                    Excluir</button>
+                            </form>
+                        </div>
                     </th>
                 </tr>
                 {% endfor %}
@@ -85,10 +101,18 @@
                 {% for task in complete_tasks %}
                 <tr>
                     <th class="ps-5">
-                        - {{ task.description }}<div class="float-end"><a class="text-decoration-none text-primary me-3"
-                                href="{{ url_for('dashboard.edit_task', task_id=task.id) }}">Editar</a><a
-                                style="color: red;" class="text-decoration-none"
-                                href="{{ url_for('dashboard.delete_task', task_id=task.id) }}">X</a></div>
+                        - {{ task.description }}
+                        <div class="float-end d-inline-flex align-items-center">
+                            <a class="text-decoration-none text-primary me-3"
+                                href="{{ url_for('dashboard.edit_task', task_id=task.id) }}">Editar</a>
+                            <form action="{{ url_for('dashboard.delete_task', task_id=task.id) }}" method="POST"
+                                class="d-inline">
+                                <button type="submit"
+                                    class="btn btn-link p-0 text-danger text-decoration-none fw-bold border-0"
+                                    onclick="return confirm('Excluir esta tarefa?')">
+                                    Excluir</button>
+                            </form>
+                        </div>
                     </th>
                 </tr>
                 {% endfor %}
