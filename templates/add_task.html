@@ -12,17 +12,20 @@
         <input class="form-control" type="text" name="description"/>
 
         <div class="form-check mb-1 mt-2">
-            <input class="form-check-input" type="radio" name="status" id="todo" value="todo" checked/>
+            <input class="form-check-input" type="radio" name="status" id="todo" value="todo" 
+                {% if type_task == 0 %}checked{% endif %}/>
             <label class="form-check-label" for="todo">A fazer</label>
         </div>
         
         <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="status" id="progress" value="progress"/>
+            <input class="form-check-input" type="radio" name="status" id="progress" value="progress"
+                {% if type_task == 1 %}checked{% endif %}/>
             <label class="form-check-label" for="progress">Em progresso</label>
         </div>
 
         <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="status" id="complete" value="complete"/>
+            <input class="form-check-input" type="radio" name="status" id="complete" value="complete"
+                {% if type_task == 2 %}checked{% endif %}/>
             <label class="form-check-label" for="complete">Concluída</label>
         </div>
         <div class="d-flex justify-content-center mt-2">

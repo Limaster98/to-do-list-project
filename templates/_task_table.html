@@ -30,7 +30,7 @@
             {% endif %}
             <tr>
                 <th class="ps-5" style="border: none;">
-                    <a href="{{ url_for('dashboard.add_task') }}"><button type="submit"
+                    <a href="{{ url_for('dashboard.add_task', type_task=type_task) }}"><button type="submit"
                             class="btn btn-success btn-sm mt-2">Adicionar tarefa</button></a>
                 </th>
             </tr>

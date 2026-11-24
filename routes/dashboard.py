@@ -23,9 +23,9 @@ def home():
 
     return render_template("dashboard.html", todo_tasks=todo_tasks, progress_tasks=progress_tasks, complete_tasks=complete_tasks, username=current_user.username)
 
-@dashboard_routes.route("/task_add", methods=["POST","GET"])
+@dashboard_routes.route("/task_add/type_<int:type_task>", methods=["POST","GET"])
 @login_required
-def add_task():
+def add_task(type_task):
     if request.method == 'POST':
         status_task = request.form['status']
         description_task = request.form['description']
@@ -36,7 +36,7 @@ def add_task():
             db.session.commit()
             return redirect(url_for('dashboard.home'))
 
-    return render_template("add_task.html")
+    return render_template("add_task.html", type_task=type_task)
 
 @dashboard_routes.route("/task_edit/<int:task_id>", methods=["POST","GET"])
 @login_required

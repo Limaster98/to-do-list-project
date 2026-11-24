@@ -8,15 +8,15 @@
 <div class="m-4">
     <h1 class="text-center mb-3">Bem vindo ao To-do-list {{ username }}</h1>
     
-    {% with title="A fazer", tasks=todo_tasks %}
+    {% with title="A fazer", tasks=todo_tasks, type_task = 0 %}
         {% include '_task_table.html' %}
     {% endwith %}
 
-    {% with title="Em progresso", tasks=progress_tasks %}
+    {% with title="Em progresso", tasks=progress_tasks, type_task = 1 %}
         {% include '_task_table.html' %}
     {% endwith %}
 
-    {% with title="Concluidas", tasks=complete_tasks %}
+    {% with title="Concluidas", tasks=complete_tasks, type_task = 2 %}
         {% include '_task_table.html' %}
     {% endwith %}
 
