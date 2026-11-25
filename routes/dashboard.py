@@ -65,3 +65,22 @@ def delete_task(task_id):
         db.session.delete(task)
         db.session.commit()
     return redirect(url_for('dashboard.home'))
+
+@dashboard_routes.route("/update_task/<int:task_id>/<int:new_type_task>", methods=["GET"])
+@login_required
+def update_task(task_id, new_type_task):
+    task = db.session.query(Tasks).filter_by(id=task_id, user_id=current_user.id).first()
+    if not task:
+        return redirect(url_for('dashboard.home'))
+
+    match new_type_task:
+        case 0:
+            new_status_task = "todo"
+        case 1:
+            new_status_task = "progress"
+        case 2:
+            new_status_task = "complete"
+
+    task.status = new_status_task
+    db.session.commit()
+    return redirect(url_for('dashboard.home'))
